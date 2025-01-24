@@ -1,0 +1,81 @@
+.treatment-page {
+  padding: 20px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.search-bar button {
+  background-color: #3f8cb5;
+  color: white;
+  margin-left: 10px;
+}
+
+mat-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f0f4ff;
+  overflow: hidden;
+}
+
+mat-card-header {
+  background-color: #d6e4ff;
+  border-bottom: 1px solid #ddd;
+}
+
+mat-card-header mat-card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+mat-card-header mat-card-subtitle {
+  padding-bottom: 0.5rem;
+  font-weight: 500;
+}
+mat-card-content {
+  padding: 10px;
+}
+
+mat-card-actions button {
+  color: white;
+  width: 100%;
+  border-radius: 6px;
+}
+
+mat-card-actions .show-more-btn {
+  background-color: #51b53f;
+}
+
+mat-card-actions .bookmark-btn {
+  background-color: #b5683f;
+}
+
+.pagination {
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination button {
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.pagination button:hover {
+  background-color: #0056b3;
+}

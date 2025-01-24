@@ -1,0 +1,184 @@
+<div class="container mt-5 mb-3">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <div class="card shadow-lg">
+        <div class="card-header text-center text-white">
+          <h3>Register</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">
+                  <i class="bi bi-person-fill me-2"></i>Name @if(name.touched &&
+                  name.invalid){
+                  <span class="alert-star">*</span>
+                  }
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter your name"
+                  formControlName="name"
+                  [ngClass]="{ 'is-invalid': name.touched && name.invalid }"
+                />
+                @if(name.touched && name.invalid){
+                <div class="alert-msg">
+                  @if(name.errors?.required){
+                  <p>Name is required...</p>
+                  } @if(name.errors?.minlength){
+                  <p>Min length is 5 characters...</p>
+                  }
+                </div>
+                }
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label">
+                  <i class="bi bi-envelope-fill me-2"></i>Email
+                  @if(email.touched && email.invalid){
+                  <span class="alert-star">*</span>
+                  }
+                </label>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Enter your email"
+                  formControlName="email"
+                  [ngClass]="{ 'is-invalid': email.touched && email.invalid }"
+                />
+                @if(email.touched && email.invalid){
+                <div class="alert-msg">
+                  @if(email.errors?.required){
+                  <p>Email is required...</p>
+                  } @if(email.errors?.pattern){
+                  <p>Please give a valid email...</p>
+                  }
+                </div>
+                }
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">
+                  <i class="bi bi-telephone-fill me-2"></i>Mobile
+                  @if(mobile.touched && mobile.invalid){
+                  <span class="alert-star">*</span>
+                  }
+                </label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  placeholder="Enter your mobile number"
+                  formControlName="mobile"
+                  [ngClass]="{ 'is-invalid': mobile.touched && mobile.invalid }"
+                />
+                @if(mobile.touched && mobile.invalid){
+                <div class="alert-msg">
+                  @if(mobile.errors?.required){
+                  <p>Mobile is required...</p>
+                  } @if(mobile.errors?.pattern){
+                  <p>Mobile is invalid...</p>
+                  }
+                </div>
+                }
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label">
+                  <i class="bi bi-calendar-fill me-2"></i>Age @if(age.touched &&
+                  age.invalid){
+                  <span class="alert-star">*</span>
+                  }
+                </label>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Enter your age"
+                  formControlName="age"
+                  [ngClass]="{ 'is-invalid': age.touched && age.invalid }"
+                />
+                @if(age.touched && age.invalid){
+                <div class="alert-msg">
+                  <p>Age is required...</p>
+                </div>
+                }
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="gender" class="form-label">
+                  <i class="bi bi-people-fill me-2"></i>Gender
+                  @if(gender.touched && gender.invalid){
+                  <span class="alert-star">*</span>
+                  }
+                </label>
+                <select
+                  class="form-select"
+                  formControlName="gender"
+                  [ngClass]="{ 'is-invalid': gender.touched && gender.invalid }"
+                >
+                  <option selected disabled>Select</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+                @if(gender.touched && gender.invalid){
+                <div class="alert-msg">
+                  <p>Gender is required...</p>
+                </div>
+                }
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">
+                  <i class="bi bi-lock-fill"></i>
+                  Password @if(password.touched && password.invalid){
+                  <span class="alert-star">*</span>
+                  }
+                </label>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Enter your password"
+                  formControlName="password"
+                  [ngClass]="{
+                    'is-invalid': password.touched && password.invalid
+                  }"
+                />
+                @if(password.touched && password.invalid){
+                <div class="alert-msg">
+                  @if(password.errors?.required){
+                  <p>Password is required...</p>
+                  } @if(password.errors?.minlength){
+                  <p>Min length is 5 characters...</p>
+                  }
+                </div>
+                }
+              </div>
+            </div>
+
+            <div class="register-btn">
+              <button
+                type="submit"
+                class="btn"
+                [disabled]="registerForm.invalid"
+              >
+                Register
+              </button>
+            </div>
+            <div class="text-center mt-3">
+              <p>
+                Already have an account?
+                <a routerLink="/login" class="text-decoration-none">
+                  <i class="bi bi-person-check-fill me-1"></i>Login Now</a
+                >
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

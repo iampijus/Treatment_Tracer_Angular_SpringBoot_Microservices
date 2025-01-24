@@ -1,0 +1,31 @@
+.login-container {
+  margin: 5rem 0;
+}
+.login-card{
+  border-radius: 20px;
+}
+
+.login-card h3 {
+  color: #333333;
+  font-weight: bold;
+}
+.login-btn {
+  background-color: #2b387c;
+  color: white;
+  width: 100%;
+}
+
+.login-btn:hover {
+  background-color: #0056b3;
+}
+.login-header-icon {
+  font-size: 3rem;
+  color: #2b387c;
+}
+
+.login-icon {
+  color: #2b387c;
+}
+.alert-msg {
+  padding: 5px 15px;
+}

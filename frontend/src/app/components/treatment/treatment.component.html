@@ -1,0 +1,191 @@
+<div class="treatment-page">
+  <!-- Alert for bookmark -->
+  @if(isBookmarked){
+  <div class="alert alert-success" role="alert">
+    Treatment bookmarked successfully!
+  </div>
+  } @if(isAlreadyBookmarked){
+  <div class="alert alert-warning" role="alert">
+    Treatment is already bookmarked!
+  </div>
+  }
+
+  <!-- Search Bar Section -->
+  <div class="search-bar">
+    <input
+      placeholder="Search treatments..."
+      [(ngModel)]="searchTerm"
+      (input)="searchTreatments()"
+    />
+    <button class="btn btn-light">
+      <i class="bi bi-search"></i>
+    </button>
+  </div>
+
+  <!-- Dropdown filter -->
+  <div class="my-4">
+    <div class="row">
+      <!-- First -->
+      <div class="col-auto">
+        <p class="ms-1">Filter by Insurance Provider</p>
+        <select
+          class="form-select"
+          (change)="filterByInsuranceProvider($event)"
+        >
+          <option value="" disabled selected>Select</option>
+
+          <option *ngFor="let provider of insurances" [value]="provider">
+            {{ provider }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading while fetching the data -->
+  @if(isLoading){
+  <div class="d-flex justify-content-center mt-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  }@else{
+  <!-- Treatment Cards Section -->
+  <div class="treatment-cards row">
+    @for(treatment of displayedTreatments ; track treatment.id){
+    <div class="treatment-card col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ treatment.hospital }}</mat-card-title>
+          <mat-card-subtitle>{{
+            treatment.medical_Condition
+          }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p><strong>Doctor:</strong> {{ treatment.doctor }}</p>
+          <p>
+            <strong>Insurance Provider:</strong>
+            {{ treatment.insurance_provider }}
+          </p>
+          <p>
+            <strong>Billing Amount:</strong>
+            {{
+              treatment.billing_amount | currency : "INR" : "symbol" : "1.2-2"
+            }}
+          </p>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button
+            type="button"
+            mat-button
+            class="show-more-btn"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="getTreatmentDetails(treatment)"
+          >
+            <i class="bi bi-eye"></i> Show More
+          </button>
+          <button
+            mat-button
+            class="bookmark-btn ms-2"
+            (click)="bookmarkTreatment(treatment)"
+            *ngIf="isLoggedIn()"
+          >
+            <i class="bi bi-bookmark me-1"></i>Bookmark
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    }
+  </div>
+
+  <!-- Pagination or Load More Section -->
+
+  <div
+    class="pagination-controls d-flex justify-content-around align-items-center mt-4"
+  >
+    <button
+      class="btn btn-outline-secondary"
+      [disabled]="currentPage === 1"
+      (click)="prevPage()"
+    >
+      Previous
+    </button>
+
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+
+    <button
+      class="btn btn-outline-primary"
+      [disabled]="currentPage === totalPages"
+      (click)="nextPage()"
+    >
+      Next
+    </button>
+  </div>
+
+  }
+</div>
+
+<!--Bootstrap Modal to show Treatment details -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="treatmentModalLabel">
+          {{ selectedTreatment?.hospital }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <strong>Medical Condition:</strong>
+          {{ selectedTreatment?.medical_Condition }}
+        </p>
+        <p><strong>Name:</strong> {{ selectedTreatment?.name }}</p>
+        <p><strong>Age:</strong> {{ selectedTreatment?.age }}</p>
+        <p><strong>Gender:</strong> {{ selectedTreatment?.gender }}</p>
+        <p><strong>Blood Type:</strong> {{ selectedTreatment?.blood_type }}</p>
+        <p>
+          <strong>Insurance:</strong>
+          {{ selectedTreatment?.insurance_provider }}
+        </p>
+        <p>
+          <strong>Billing Amount:</strong>
+          {{
+            selectedTreatment?.billing_amount
+              | currency : "INR" : "symbol" : "1.2-2"
+          }}
+        </p>
+        <p><strong>Doctor:</strong> {{ selectedTreatment?.doctor }}</p>
+        <p><strong>Medication:</strong> {{ selectedTreatment?.medication }}</p>
+        <p><strong>Room No:</strong> {{ selectedTreatment?.room_number }}</p>
+        <p>
+          <strong>Admission Type:</strong>
+          {{ selectedTreatment?.admission_type }}
+        </p>
+        <p>
+          <strong>Discharge Date:</strong>
+          {{ selectedTreatment?.discharge_date }}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

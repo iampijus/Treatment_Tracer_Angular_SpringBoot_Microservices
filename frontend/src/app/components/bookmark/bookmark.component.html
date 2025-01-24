@@ -1,0 +1,118 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Your Bookmarked Treatments</h2>
+  
+  <!-- Loading while fetching the data -->
+  @if(isLoading){
+  <div class="d-flex justify-content-center mt-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  }@else{ @if(bookmarks.length === 0){
+  <div class="alert alert-info text-center w-50 mx-auto mt-5">
+    <p>No bookmarks yet! Start bookmarking treatments.</p>
+  </div>
+  }@else{
+  <div class="treatment-cards row">
+    @for(treatment of bookmarks;track treatment.id){
+    <div class="treatment-card col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ treatment.hospital }}</mat-card-title>
+          <mat-card-subtitle>{{
+            treatment.medical_Condition
+          }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p><strong>Doctor:</strong> {{ treatment.doctor }}</p>
+          <p><strong>Insurance:</strong> {{ treatment.insurance_provider }}</p>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button
+            type="button"
+            mat-button
+            class="view-details-btn"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="getDetails(treatment)"
+          >
+            <i class="bi bi-info-circle me-2"></i>View
+          </button>
+          <button
+            mat-button
+            class="remove-btn ms-2"
+            (click)="removeBookmark(treatment.id)"
+          >
+            <i class="bi bi-trash me-2"></i>Remove
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    }
+  </div>
+  } }
+</div>
+
+<!--Bootstrap Modal to show Treatment details -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="treatmentModalLabel">
+          {{ selectedBookmark?.hospital }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <strong>Medical Condition:</strong>
+          {{ selectedBookmark?.medical_Condition }}
+        </p>
+        <p><strong>Name:</strong> {{ selectedBookmark?.name }}</p>
+        <p><strong>Age:</strong> {{ selectedBookmark?.age }}</p>
+        <p><strong>Gender:</strong> {{ selectedBookmark?.gender }}</p>
+        <p><strong>Blood Type:</strong> {{ selectedBookmark?.blood_type }}</p>
+        <p>
+          <strong>Insurance:</strong>
+          {{ selectedBookmark?.insurance_provider }}
+        </p>
+        <p>
+          <strong>Billing Amount:</strong>
+          {{
+            selectedBookmark?.billing_amount
+              | currency : "INR" : "symbol" : "1.2-2"
+          }}
+        </p>
+        <p><strong>Doctor:</strong> {{ selectedBookmark?.doctor }}</p>
+        <p><strong>Medication:</strong> {{ selectedBookmark?.medication }}</p>
+        <p><strong>Room No:</strong> {{ selectedBookmark?.room_number }}</p>
+        <p>
+          <strong>Admission Type:</strong>
+          {{ selectedBookmark?.admission_type }}
+        </p>
+        <p>
+          <strong>Discharge Date:</strong>
+          {{ selectedBookmark?.discharge_date }}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

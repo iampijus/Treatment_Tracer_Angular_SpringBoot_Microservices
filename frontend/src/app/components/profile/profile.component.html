@@ -1,0 +1,106 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <div class="card shadow-lg">
+        <div class="card-header text-center text-white">
+          <h3>User Profile</h3>
+        </div>
+
+        <div class="card-body text-center">
+          <img
+            src="https://freesvg.org/img/abstract-user-flat-4.png"
+            alt="Profile Picture"
+            class="rounded-circle mb-4"
+            width="100"
+            height="100"
+          />
+
+          <div class="form-group row mb-3">
+            <label class="col-4">Email:</label>
+            <div class="col-8">
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                [(ngModel)]="user.email"
+                disabled
+              />
+            </div>
+          </div>
+          <div class="form-group row mb-3">
+            <label class="col-4">Name:</label>
+            <div class="col-8">
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                [(ngModel)]="user.name"
+                [disabled]="!isEditMode"
+              />
+            </div>
+          </div>
+          <div class="form-group row mb-3">
+            <label class="col-4">Mobile:</label>
+            <div class="col-8">
+              <input
+                type="text"
+                class="form-control"
+                id="location"
+                [(ngModel)]="user.mobile"
+                [disabled]="!isEditMode"
+              />
+            </div>
+          </div>
+          <div class="form-group row mb-3">
+            <label class="col-4">Age:</label>
+            <div class="col-8">
+              <input
+                type="number"
+                class="form-control"
+                id="age"
+                [(ngModel)]="user.age"
+                [disabled]="!isEditMode"
+              />
+            </div>
+          </div>
+
+          <div class="form-group row mb-3">
+            <label class="col-4">Gender:</label>
+            <div class="col-8">
+              <select
+                class="form-control"
+                id="gender"
+                [(ngModel)]="user.gender"
+                [disabled]="!isEditMode"
+              >
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="text-center mt-4">
+            @if(isEditMode){
+            <button
+              class="btn btn-outline-success px-4"
+              (click)="saveDetails()"
+            >
+              Save
+            </button>
+            }@else{
+            <button class="btn btn-outline-primary" (click)="toggleEditMode()">
+              Edit Profile
+            </button>
+            }
+          </div>
+        </div>
+        <!-- Profile Footer -->
+        <div class="card-footer text-center bg-light">
+          <button class="btn btn-danger" (click)="logout()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+.card {
+  border-radius: 10px;
+}
+.card-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #2b387c;
+}
+
+.register-btn button {
+  width: 100%;
+  color: white;
+  background-color: #51b53f;
+}
+.register-btn button:hover {
+  background-color: #8cb53f;
+}
+.alert-msg {
+  color: red;
+  padding-left: 10px;
+}
+.alert-star{
+  color: red;
+}

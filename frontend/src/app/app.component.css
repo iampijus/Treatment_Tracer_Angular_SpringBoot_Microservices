@@ -1,0 +1,16 @@
+.navbar {
+  background-color: #3f51b5;
+}
+.navbar a {
+  color: white;
+  font-weight: 500;
+}
+.navbar button{
+  font-weight: 500;
+}
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background: #3f51b5;
+  color: white;
+}

@@ -1,0 +1,42 @@
+mat-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #8cb53f;
+  overflow: hidden;
+  color: white;
+}
+
+mat-card-header {
+  background-color: #607c2b;
+  border-bottom: 1px solid #ddd;
+}
+
+mat-card-header mat-card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+mat-card-header mat-card-subtitle {
+  padding-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+mat-card-content {
+  padding: 10px;
+}
+
+mat-card-actions button {
+  color: white;
+  width: 100%;
+  border-radius: 6px;
+}
+
+mat-card-actions .view-details-btn {
+  background-color: #4e9f3d;
+}
+
+mat-card-actions .remove-btn {
+  background-color: #e07a3d;
+}
