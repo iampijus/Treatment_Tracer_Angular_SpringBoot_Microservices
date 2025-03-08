@@ -1,3 +1,19 @@
+Treatment Tracer is a web app built with Angular and Spring Boot using a Microservices Architecture to manage medical treatments securely and efficiently.
+
+Key Features:
+API Gateway: Routes requests and validates JWT tokens.
+Authentication Service: Authenticates users and generates JWT tokens.
+Treatment Service: Uses Feign Client to fetch data from Dockerized endpoints.
+UserProfile Service: Manages user details and sends email/password to Authentication Service via Kafka.
+Service Registry: Eureka Server for service discovery.
+Config Server: For centralized configuration.
+Bookmark Service: For managing the bookmarks.
+Databases:
+MongoDB: Stores bookmarks.
+PostgreSQL: Manages user data.
+Technologies:
+Kafka, Docker, JWT, Angular, and Spring Boot ensure scalability, security, and seamless communication.
+
 ### 1. Dashboard
 ![dashboard](https://github.com/user-attachments/assets/d40af825-e9e2-46b3-829d-ae2735477ebe)
 ### 1. Treatments
